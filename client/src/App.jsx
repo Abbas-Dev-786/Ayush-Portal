@@ -9,6 +9,7 @@ import VerifyEmail from "./pages/login/VerifyEmail";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Home from "./pages/home/Home";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -21,9 +22,10 @@ const App = () => {
         <Notification />
         <Routes>
           <Route path="/">
-            <Route index element={<Dashboard />} />
+            <Route index element={<Home />} />
           </Route>
 
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/verifyEmail/:token" element={<VerifyEmail />} />
