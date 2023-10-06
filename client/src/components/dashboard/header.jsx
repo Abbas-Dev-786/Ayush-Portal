@@ -16,14 +16,19 @@ import {
   Button,
   Divider,
   IconButton,
+  Input,
   MenuItem,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 
 function Header() {
+  const SearchInput = styled(TextField)`
+    background-color: "gray";
+  `;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -59,8 +64,8 @@ function Header() {
             direction={"row"}
           >
             <Box component="img" height={50} src="./images/logo.svg" />
-            <TextField
-              sx={{ ml: 4, visibility: { xs: "hidden", md: "visible" } }}
+            <SearchInput
+              // sx={{ ml: 4, visibility: { xs: "hidden", md: "visible" } }}
               placeholder="Search"
             />
           </Stack>

@@ -36,7 +36,7 @@ const DashboardLayout = ({ children }) => {
         columns={3}
       >
         <Grid
-          display={{ xs: "none", md: "flex" }}
+          display={{ sm: "none", lg: "flex" }}
           flexDirection={"column"}
           alignItems={"center"}
           justifyContent={"start"}
@@ -140,7 +140,7 @@ const DashboardLayout = ({ children }) => {
           {/* </Paper> */}
         </Grid>
         <Grid
-          display={{ xs: "none", md: "flex" }}
+          display={{ sm: "none", lg: "flex" }}
           flexDirection={"column"}
           alignItems={"center"}
           justifyContent={"start"}
