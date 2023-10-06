@@ -1,13 +1,18 @@
 import { Grid, Box } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AuthContainer from "../../components/AuthContainer";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
+  const theme = useTheme();
+
   return (
     <div className="wrapper">
       <AuthContainer
         maxWidth="xl"
-        sx={{ px: { xs: 3, md: "0px !important" }, mx: 2 }}
+        disableGutters={useMediaQuery(theme.breakpoints.up("md"))}
+        sx={{ m: 2, height: "100%", py: { xs: 3, md: 0 } }}
       >
         <Grid container spacing={1}>
           <Grid item xs={12} md={6}>

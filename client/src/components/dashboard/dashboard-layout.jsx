@@ -5,6 +5,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Container,
   Grid,
   IconButton,
   List,
@@ -28,12 +29,14 @@ const DashboardLayout = ({ children }) => {
     <Stack minHeight={"100vh"} width={"100%"}>
       <Header />
       <BottomNav />
+        <Container maxWidth="xl">
       <Grid
         sx={{ mt: 3 }}
         minHeight={"100vh"}
         width={"100%"}
         display={"flex"}
         columns={3}
+        container
       >
         <Grid
           display={{ sm: "none", lg: "flex" }}
@@ -42,6 +45,7 @@ const DashboardLayout = ({ children }) => {
           justifyContent={"start"}
           minWidth={200}
           minHeight={"100vh"}
+          // position="fixed"
           sx={{ bgcolor: "", px: 1, py: 2, mx: 1 }}
           item
         >
@@ -121,9 +125,9 @@ const DashboardLayout = ({ children }) => {
               display: "flex",
               //   flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "space-between",
               bgcolor: "gainsboro",
-              py: 2,
+              p: 2,
               borderRadius: 3,
               gap: 2,
             }}
@@ -131,7 +135,7 @@ const DashboardLayout = ({ children }) => {
             <Avatar sx={{ width: 60, height: 60 }} />
             <TextField
               sx={{
-                width: "80%",
+                width: "90%",
               }}
               placeholder="Write Posts here..."
             />
@@ -151,7 +155,7 @@ const DashboardLayout = ({ children }) => {
         >
           <Card
             sx={{
-              position: "relative",
+              // position: "relative",
               minHeight: 400,
               maxWidth: 240,
               minWidth: 240,
@@ -187,6 +191,7 @@ const DashboardLayout = ({ children }) => {
           </Card>
         </Grid>
       </Grid>
+  </Container>
     </Stack>
   );
 };

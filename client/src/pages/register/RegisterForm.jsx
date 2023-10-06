@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
 import {
+  Autocomplete,
   Box,
   Button,
   Checkbox,
@@ -15,6 +16,8 @@ import { registerUser } from "../../api";
 import { Link } from "react-router-dom";
 import AuthBox from "../../components/AuthBox";
 
+const ROLES = ["User", "Startup", "Investor", "Incubator"];
+
 const RegisterForm = () => {
   //   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -25,6 +28,7 @@ const RegisterForm = () => {
     confirmPassword: "",
     password: "",
     description: "",
+    role:""
   });
 
   const { mutate, isLoading } = useMutation(registerUser, {
@@ -63,6 +67,7 @@ const RegisterForm = () => {
       confirmPassword: "",
       password: "",
       description: "",
+      role:""
     });
   };
 
@@ -145,6 +150,19 @@ const RegisterForm = () => {
             }
           />
         </Stack>
+        <Autocomplete
+          disablePortal
+          fullWidth
+          id="roles"
+          options={ROLES}
+          inputValue={cred?.role}
+          onInputChange={(_, role) => {
+            setCred({ ...cred, role: role.toLowerCase() });
+          }}
+          renderInput={(params) => (
+            <TextField {...params} label="Are You a " required />
+          )}
+        />
         <TextField
           label="Description"
           name="description"
