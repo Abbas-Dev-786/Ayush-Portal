@@ -13,7 +13,6 @@ import {
 } from "@mui/icons-material";
 import {
   Avatar,
-  Button,
   Divider,
   IconButton,
   MenuItem,
@@ -39,7 +38,7 @@ function Header() {
       color="transparent"
     >
       <Container
-        maxWidth="lg"
+        maxWidth="xl"
         sx={{
           width: "100%",
         }}
@@ -50,6 +49,8 @@ function Header() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            gap:6,
+            py:1
           }}
           disableGutters
         >
@@ -59,11 +60,35 @@ function Header() {
             direction={"row"}
           >
             <Box component="img" height={50} src="./images/logo.svg" />
-            <TextField
-              sx={{ ml: 4, visibility: { xs: "hidden", md: "visible" } }}
+          </Stack>
+          <TextField
+              // sx={{ ml: 4, visibility: { xs: "hidden", md: "visible" } }}
+              fullWidth
+              sx={{
+                visibility: { xs: "hidden", md: "visible" },
+                "& .MuiOutlinedInput-root": {
+                  borderRadius: "50px",
+      
+                  legend: {
+                    marginLeft: "30px"
+                  }
+                },
+                "& .MuiAutocomplete-inputRoot": {
+                  paddingLeft: "20px !important",
+                  borderRadius: "50px"
+                },
+                "& .MuiInputLabel-outlined": {
+                  paddingLeft: "20px"
+                },
+                "& .MuiInputLabel-shrink": {
+                  marginLeft: "20px",
+                  paddingLeft: "10px",
+                  paddingRight: 0,
+                  background: "white"
+                }
+              }}
               placeholder="Search"
             />
-          </Stack>
           <Stack
             display={{ xs: "none", md: "flex" }}
             // bgcolor={"blue"}
@@ -170,8 +195,8 @@ function Header() {
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>Account</MenuItem>
-            <Divider />
-            <MenuItem sx={{ width: "100%" }} onClick={handleClose}>
+            {/* <Divider /> */}
+            {/* <MenuItem sx={{ width: "100%" }} onClick={handleClose}>
               <Button
                 sx={{ width: "100%", bgcolor: "orange" }}
                 variant="contained"
@@ -186,7 +211,7 @@ function Header() {
               >
                 Login
               </Button>
-            </MenuItem>
+            </MenuItem> */}
           </Menu>
         </Toolbar>
       </Container>
