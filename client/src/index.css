@@ -8,9 +8,17 @@ a {
   color: inherit;
 }
 
+html,body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  padding-right: 0 !important;
+}
+
 .wrapper {
-  height: 100vh;
-  /* background: #e0e0e0; */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,3 +28,14 @@ a {
   height: 100%;
   width: 100%;
 }
+
+/* #search-input{
+  border:1.5px gray;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: gainsboro;
+  margin-left: 10px;
+}
+#search-input:focus-visible{
+  outline: none;
+} */
