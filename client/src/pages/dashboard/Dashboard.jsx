@@ -1,5 +1,7 @@
+import DashboardLayout from "../../components/dashboard/dashboard-layout";
+
 const Dashboard = () => {
-  return <div>please login or register</div>;
+  return <DashboardLayout>MORE Content</DashboardLayout>;
 };
 
 export default Dashboard;

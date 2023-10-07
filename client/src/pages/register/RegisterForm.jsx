@@ -28,7 +28,7 @@ const RegisterForm = () => {
     confirmPassword: "",
     password: "",
     description: "",
-    role: "",
+    role:""
   });
 
   const { mutate, isLoading } = useMutation(registerUser, {
@@ -67,7 +67,7 @@ const RegisterForm = () => {
       confirmPassword: "",
       password: "",
       description: "",
-      role: "",
+      role:""
     });
   };
 
