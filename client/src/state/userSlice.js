@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  mode: "dark",
   user: JSON.parse(localStorage.getItem("user"))?.user || {},
   token: JSON.parse(localStorage.getItem("user"))?.token || "",
 };

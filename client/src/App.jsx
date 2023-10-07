@@ -26,6 +26,7 @@ const App = () => {
           </Route>
 
           <Route path="/dashboard" element={<Dashboard />} />
+
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/verifyEmail/:token" element={<VerifyEmail />} />

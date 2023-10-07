@@ -25,7 +25,7 @@ const LoginForm = () => {
       dispatch(login(data));
       toast.success("Login Successfull");
 
-      navigate("/");
+      navigate("/dashboard");
     },
   });
 

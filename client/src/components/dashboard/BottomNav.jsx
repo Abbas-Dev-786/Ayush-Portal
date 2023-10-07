@@ -1,4 +1,3 @@
-import React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import { BottomNavigationAction, Paper } from "@mui/material";
 import {
@@ -7,6 +6,13 @@ import {
   NotificationsOutlined,
   RocketLaunchOutlined,
 } from "@mui/icons-material";
+
+const navLinks = [
+  { text: "News", link: "", icon: <NewspaperOutlined /> },
+  { text: "Trending", link: "", icon: <RocketLaunchOutlined /> },
+  { text: "Messages", link: "", icon: <MessageOutlined /> },
+  { text: "Notifications", link: "", icon: <NotificationsOutlined /> },
+];
 const BottomNav = () => {
   return (
     <Paper
@@ -26,16 +32,13 @@ const BottomNav = () => {
           width: "100%",
         }}
       >
-        <BottomNavigationAction label="News" icon={<NewspaperOutlined />} />
-        <BottomNavigationAction
-          label="Trending"
-          icon={<RocketLaunchOutlined />}
-        />
-        <BottomNavigationAction label="Messages" icon={<MessageOutlined />} />
-        <BottomNavigationAction
-          label="Notifications"
-          icon={<NotificationsOutlined />}
-        />
+        {navLinks.map((el) => (
+          <BottomNavigationAction
+            key={el.text}
+            label={el.text}
+            icon={el.icon}
+          />
+        ))}
       </BottomNavigation>
     </Paper>
   );
