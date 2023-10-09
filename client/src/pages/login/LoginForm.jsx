@@ -1,27 +1,31 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
+import { useDispatch } from "react-redux";
 import { Box, Button, TextField, Typography } from "@mui/material";
 
 import { LoginUser } from "../../api";
 import { Link, useNavigate } from "react-router-dom";
 import AuthBox from "../../components/AuthBox";
+import { login } from "../../state/userSlice";
 
 const LoginForm = () => {
   const [cred, setCred] = useState({
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const { mutate, isLoading } = useMutation(LoginUser, {
     onError: (err) => {
       toast.error(err.message);
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      dispatch(login(data));
       toast.success("Login Successfull");
 
-      navigate("/");
+      navigate("/dashboard");
     },
   });
 

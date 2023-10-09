@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import RegisterPage from "./pages/register/Register";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Notification from "./components/Notification";
 import Login from "./pages/login/Login";
 import { ThemeProvider } from "@mui/material";
@@ -9,6 +9,7 @@ import VerifyEmail from "./pages/login/VerifyEmail";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Messages from "./pages/dashboard/Messages";
 import Home from "./pages/home/Home";
 
 const queryClient = new QueryClient({
@@ -26,6 +27,8 @@ const App = () => {
           </Route>
 
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/messages" element={<Messages />} />
+
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/verifyEmail/:token" element={<VerifyEmail />} />
