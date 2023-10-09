@@ -10,8 +10,12 @@ const app = express();
 
 app.enable("trust proxy");
 
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(morgan("dev"));
-app.use(cors());
 
 app.use(express.json());
 
