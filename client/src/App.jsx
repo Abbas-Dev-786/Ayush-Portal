@@ -10,6 +10,7 @@ import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Home from "./pages/home/Home";
+import Messages from "./pages/messages/Messages";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -26,6 +27,7 @@ const App = () => {
           </Route>
 
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/messages" element={<Messages />} />
 
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<Login />} />

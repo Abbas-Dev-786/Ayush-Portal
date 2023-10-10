@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import DashboardLayout from "../../components/dashboard/dashboard-layout";
+import DashboardLayout from "../../components/dashboard/Dashboard-layout";
 import { socket } from "../../socket";
+import PostContainer from "../../components/dashboard/PostContainer";
 
 const Dashboard = () => {
   useEffect(() => {
@@ -9,7 +10,11 @@ const Dashboard = () => {
     socket.emit("message", "hello client");
   }, []);
 
-  return <DashboardLayout>MORE Content</DashboardLayout>;
+  return (
+    <DashboardLayout>
+      <PostContainer />
+    </DashboardLayout>
+  );
 };
 
 export default Dashboard;

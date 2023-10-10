@@ -13,7 +13,7 @@ const DashboardLayout = ({ children }) => {
       <BottomNav />
       <Container maxWidth="xl">
         <Grid
-          sx={{ mt: 3 }}
+          sx={{ mt: 5 }}
           minHeight={"100vh"}
           width={"100%"}
           display={"flex"}

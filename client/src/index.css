@@ -8,9 +8,11 @@ a {
   color: inherit;
 }
 
-html,body {
+html,
+body {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  padding-right: 0 !important;
 }
 
 body {

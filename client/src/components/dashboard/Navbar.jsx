@@ -11,11 +11,12 @@ import {
 import { Divider, Stack, Typography } from "@mui/material";
 import UserMenu from "./UserMenu";
 import Searchbar from "./Searchbar";
+import { NavLink } from "react-router-dom";
 
 const navLinks = [
   { text: "News", link: "", icon: <NewspaperOutlined /> },
   { text: "Trending", link: "", icon: <RocketLaunchOutlined /> },
-  { text: "Messages", link: "", icon: <MessageOutlined /> },
+  { text: "Messages", link: "/dashboard/messages", icon: <MessageOutlined /> },
   { text: "Notifications", link: "", icon: <NotificationsOutlined /> },
 ];
 
@@ -59,16 +60,17 @@ function Navbar() {
               sx={{ py: 0.5 }}
             >
               {navLinks.map((el) => (
-                <Box
-                  key={el.text}
-                  display={"flex"}
-                  flexDirection={"column"}
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                >
-                  {el.icon}
-                  <Typography>{el.text}</Typography>
-                </Box>
+                <NavLink key={el.text} to={el.link}>
+                  <Box
+                    display={"flex"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                  >
+                    {el.icon}
+                    <Typography>{el.text}</Typography>
+                  </Box>
+                </NavLink>
               ))}
 
               <Divider orientation="vertical" flexItem />
