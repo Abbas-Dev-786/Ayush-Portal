@@ -9,6 +9,7 @@ import {
 import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
+import PostItem from "./dashboard/card";
 
 const Post = () => {
   const LIMIT = 10;
@@ -57,17 +58,12 @@ const Post = () => {
         : data.pages?.map((page, pi) =>
             page.map((post, i) => {
               return (
-                <Card
-                  ref={page.length === i + 1 ? ref : null}
+                <PostItem
+                  // ref={page.length === i + 1 ? ref : null}
                   key={i}
-                  variant="outlined"
-                  sx={{ py: 2.5, px: 3, my: 1 }}
-                >
-                  <span> pageNumber:{pi}</span>
-                  <Typography fontSize={{ sm: 8, md: 14 }}>
-                    postNumber:{i}:{post?.title}
-                  </Typography>
-                </Card>
+                  data={post}
+                  index={i}
+                />
               );
             })
           )}
