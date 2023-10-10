@@ -20,7 +20,7 @@ const DashboardLayout = ({ children }) => {
           container
         >
           <Grid
-            display={{ xs: "none", md: "flex" }}
+            display={{ xs: "none", lg: "flex" }}
             flexDirection={"column"}
             alignItems={"center"}
             justifyContent={"start"}
@@ -28,6 +28,7 @@ const DashboardLayout = ({ children }) => {
             minHeight={"100vh"}
             sx={{ bgcolor: "", px: 1, py: 2, mx: 1 }}
             item
+            overflow={"hidden"}
           >
             <UserCard />
           </Grid>
@@ -69,7 +70,7 @@ const DashboardLayout = ({ children }) => {
             {children}
           </Grid>
           <Grid
-            display={{ xs: "none", md: "flex" }}
+            display={{ xs: "none", lg: "flex" }}
             flexDirection={"column"}
             alignItems={"center"}
             justifyContent={"start"}
@@ -77,6 +78,7 @@ const DashboardLayout = ({ children }) => {
             minHeight={"100vh"}
             sx={{ bgcolor: "", px: 1, py: 2, mx: 1 }}
             item
+            overflow={"hidden"}
           >
             <LinksCard />
           </Grid>
