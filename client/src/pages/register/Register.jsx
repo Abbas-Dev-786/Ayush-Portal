@@ -2,7 +2,7 @@ import { Grid, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import RegisterForm from "./RegisterForm";
-import AuthContainer from "../../components/AuthContainer";
+import AuthContainer from "../../components/auth/AuthContainer";
 
 const RegisterPage = () => {
   const theme = useTheme();

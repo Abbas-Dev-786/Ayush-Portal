@@ -1,99 +1,141 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import { deepPurple, grey } from "@mui/material/colors";
+import { Box, Grid, Stack, Typography, Container } from "@mui/material";
+import { grey, blue } from "@mui/material/colors";
 import ChatInput from "../../components/message/ChatInput";
 import ChatBar from "../../components/message/ChatBar";
+import ContactCard from "../../components/message/ContactCard";
+import Navbar from "../../components/common/Navbar";
+import BottomNav from "../../components/common/BottomNav";
+import { useState } from "react";
 
 const Messages = () => {
-  const messages = [
-    { user: "RM", type: "sent", msg: "Hey I hope this ui Looks good" },
-    { user: "AB", type: "received", msg: "Hey I hope this ui Looks good" },
-    { user: "AB", type: "received", msg: "Hey I hope this ui Looks good" },
-    { user: "AP", type: "sent", msg: "Hey I hope this ui Looks good" },
-    { user: "AP", type: "sent", msg: "Hey how are you??" },
-    { user: "AB", type: "received", msg: "Hey I hope this ui Looks good" },
-    { user: "AP", type: "sent", msg: "Hey how are you??" },
-    {
-      user: "AP",
-      type: "sent",
-      msg: "Hey Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, autem I hope this ui Looks good",
-    },
-    { user: "RM", type: "received", msg: "Hey I hope this ui Looks good" },
-    { user: "AP", type: "sent", msg: "Hey how are you??" },
+  const [selectedChat, setSelectedChat] = useState({});
+
+  const messageData = [
     {
       user: "RM",
-      type: "received",
-      msg: "Hey I hope this ui Looks good Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, autem",
+      name: "Ram Soni",
+      messages: [
+        { type: "received", msg: "Hey I hope this ui Looks good" },
+        { type: "sent", msg: "Nice" },
+      ],
     },
-    { user: "AP", type: "sent", msg: "Hey how are you??" },
-
-    { user: "AB", type: "received", msg: "Hey I hope this ui Looks good" },
+    {
+      user: "AB",
+      name: "Abbas Bhanpura wala",
+      messages: [
+        { type: "received", msg: "Hey Create Dashboard Page by today" },
+        { type: "sent", msg: "Today I am busy" },
+        { type: "received", msg: "Ok" },
+        { type: "received", msg: "Complete it by tommorrow" },
+        { type: "sent", msg: "Sure" },
+      ],
+    },
+    {
+      user: "AR",
+      name: "Archi Jain",
+      messages: [
+        { type: "sent", msg: "Hii" },
+        { type: "sent", msg: "I will not join today's meeting" },
+        { type: "received", msg: "OK" },
+      ],
+    },
   ];
 
   return (
-    <Stack maxHeight={"100vh"} display={"flex"}>
-      <Grid height={"100vh"} display={"flex"} flexDirection={"row"}>
-        <Grid
-          display={{ xs: "none", lg: "flex" }}
-          minWidth={350}
-          height={"100vh"}
-          sx={{ bgcolor: grey[200] }}
-          px={1}
-          pt={4}
-          item
-        ></Grid>
+    <Container maxWidth="xl">
+      <Navbar />
+      <BottomNav />
+      <Grid
+        height={"85vh"}
+        display={"flex"}
+        flexDirection={"row"}
+        mt={5}
+        border="1px solid #ccc"
+      >
+        <Grid minWidth={350} sx={{ bgcolor: grey[200] }} px={1} pt={4} item>
+          <Typography variant="h5" textAlign="center" mb={5}>
+            Your Messages
+          </Typography>
+
+          {messageData.map((user, i) => (
+            <ContactCard
+              key={i}
+              data={user}
+              selectedChat={selectedChat}
+              setSelectedChat={setSelectedChat}
+            />
+          ))}
+        </Grid>
         <Grid
           overflow={"hidden"}
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"space-between"}
           width={"100%"}
           item
           sx={{ overflowY: "scroll" }}
         >
-          <ChatBar />
-          <Stack px={1}>
-            {messages.map((e, i) => {
-              return (
-                <Box
-                  key={i}
-                  display={"flex"}
-                  alignItems={"center"}
-                  m={1.5}
-                  justifyContent={e.type === "sent" ? "end" : "start"}
-                >
-                  <Box
-                    display={"flex"}
-                    flexDirection={"column"}
-                    alignItems={"center"}
-                    justifyContent={e.type === "sent" ? "end" : "start"}
-                    bgcolor={
-                      e?.type === "sent" ? deepPurple[500] : deepPurple[200]
-                    }
-                    px={2}
-                    pt={1.5}
-                    pb={0.5}
-                    borderRadius={"15px"}
-                  >
-                    <Typography
-                      color={e?.type === "sent" ? "white" : "black"}
-                      variant="body2"
+          {!selectedChat?.user ? (
+            <Box
+              height="100%"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography textAlign="center">Select a chat to view</Typography>
+            </Box>
+          ) : (
+            <>
+              <ChatBar
+                name={selectedChat?.name}
+                userName={selectedChat?.user}
+              />
+              <Stack px={1}>
+                {selectedChat?.messages?.map((e, i) => {
+                  return (
+                    <Box
+                      key={i}
+                      display={"flex"}
+                      alignItems={"center"}
+                      m={1.5}
+                      justifyContent={e.type === "sent" ? "end" : "start"}
                     >
-                      {e.msg}
-                    </Typography>
-                    <Typography
-                      color={e?.type === "sent" ? "white" : "black"}
-                      variant="body2"
-                      width={"100%"}
-                      textAlign={"end"}
-                    >
-                      {new Date().toLocaleTimeString()}
-                    </Typography>
-                  </Box>
-                </Box>
-              );
-            })}
-          </Stack>
-          <ChatInput />
+                      <Box
+                        display={"flex"}
+                        flexDirection={"column"}
+                        // alignItems={"center"}
+                        justifyContent={e.type === "sent" ? "end" : "start"}
+                        bgcolor={e?.type === "sent" ? blue[500] : grey[300]}
+                        px={2}
+                        pt={1.5}
+                        pb={0.5}
+                        borderRadius={"15px"}
+                      >
+                        <Typography
+                          color={e?.type === "sent" ? "white" : "black"}
+                          variant="body2"
+                        >
+                          {e.msg}
+                        </Typography>
+                        <Typography
+                          color={e?.type === "sent" ? "white" : "black"}
+                          variant="body2"
+                          width={"100%"}
+                          textAlign={"end"}
+                        >
+                          {new Date().toLocaleTimeString()}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  );
+                })}
+              </Stack>
+              <ChatInput />
+            </>
+          )}
         </Grid>
       </Grid>
-    </Stack>
+    </Container>
   );
 };
 

@@ -1,7 +1,7 @@
 import { Grid, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import AuthContainer from "../../components/AuthContainer";
+import AuthContainer from "../../components/auth/AuthContainer";
 import LoginForm from "./LoginForm";
 
 const Login = () => {

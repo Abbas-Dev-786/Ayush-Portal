@@ -14,7 +14,7 @@ import {
 
 import { registerUser } from "../../api";
 import { Link } from "react-router-dom";
-import AuthBox from "../../components/AuthBox";
+import AuthBox from "../../components/auth/AuthBox";
 
 const ROLES = ["User", "Startup", "Investor", "Incubator"];
 
@@ -28,7 +28,7 @@ const RegisterForm = () => {
     confirmPassword: "",
     password: "",
     description: "",
-    role:""
+    role: "",
   });
 
   const { mutate, isLoading } = useMutation(registerUser, {
@@ -67,7 +67,7 @@ const RegisterForm = () => {
       confirmPassword: "",
       password: "",
       description: "",
-      role:""
+      role: "",
     });
   };
 

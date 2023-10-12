@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import AuthContainer from "../../components/AuthContainer";
+import AuthContainer from "../../components/auth/AuthContainer";
 import { verifyEmail } from "../../api";
 
 const VerifyEmail = () => {

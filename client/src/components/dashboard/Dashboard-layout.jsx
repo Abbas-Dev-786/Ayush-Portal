@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { Avatar, Box, Container, Grid, Stack, TextField } from "@mui/material";
 
-import BottomNav from "./BottomNav";
-import Navbar from "./Navbar";
+import BottomNav from "../common/BottomNav";
+import Navbar from "../common/Navbar";
 import UserCard from "./UserCard";
 import LinksCard from "./LinksCard";
 

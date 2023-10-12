@@ -6,7 +6,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 
 import { LoginUser } from "../../api";
 import { Link, useNavigate } from "react-router-dom";
-import AuthBox from "../../components/AuthBox";
+import AuthBox from "../../components/auth/AuthBox";
 import { login } from "../../state/userSlice";
 
 const LoginForm = () => {

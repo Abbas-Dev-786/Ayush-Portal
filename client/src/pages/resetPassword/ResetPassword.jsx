@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import AuthContainer from "../../components/AuthContainer";
+import AuthContainer from "../../components/auth/AuthContainer";
 import ResetPasswordForm from "./ResetPasswordForm";
 
 const ResetPassword = () => {

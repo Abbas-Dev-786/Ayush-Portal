@@ -1,18 +1,21 @@
-import { AppBar, Avatar, IconButton, Stack, Typography } from "@mui/material";
+import PropTypes from "prop-types";
+import { Avatar, Box, IconButton, Stack, Typography } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import { Video, ArrowLeft, MoreHorizontal } from "lucide-react";
 
-const ChatBar = () => {
+const ChatBar = ({ name, userName }) => {
   return (
-    <AppBar
+    <Box
       variant="outlined"
       sx={{
+        display: "flex",
         justifyContent: "space-between",
         flexDirection: "row",
         bgcolor: "white",
         px: 2,
         position: { sm: "fixed", md: "static" },
         py: 1.5,
+        borderBottom: "1px solid #ccc",
       }}
     >
       <Stack
@@ -26,10 +29,10 @@ const ChatBar = () => {
           <ArrowLeft />
         </IconButton>
         <Avatar sx={{ borderRadius: "10px", bgcolor: deepPurple[500] }}>
-          AP
+          {userName}
         </Avatar>
         <Typography fontWeight={600} color={"black"} variant="h6">
-          Chat room
+          {name}
         </Typography>
       </Stack>
       <Stack
@@ -50,8 +53,13 @@ const ChatBar = () => {
           <MoreHorizontal />
         </IconButton>
       </Stack>
-    </AppBar>
+    </Box>
   );
 };
 
 export default ChatBar;
+
+ChatBar.propTypes = {
+  name: PropTypes.any,
+  userName: PropTypes.any,
+};

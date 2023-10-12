@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import RegisterPage from "./pages/register/Register";
 import { Route, Routes } from "react-router-dom";
-import Notification from "./components/Notification";
+import Notification from "./components/common/Notification";
 import Login from "./pages/login/Login";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";

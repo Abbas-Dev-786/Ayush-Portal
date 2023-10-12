@@ -45,11 +45,13 @@ function Navbar() {
             }}
             disableGutters
           >
-            <Box
-              component="img"
-              height={50}
-              src="./../../../public/images/logo.svg"
-            />
+            <NavLink to="/dashboard">
+              <Box
+                component="img"
+                height={50}
+                src="./../../../public/images/logo.svg"
+              />
+            </NavLink>
 
             <Searchbar />
 
