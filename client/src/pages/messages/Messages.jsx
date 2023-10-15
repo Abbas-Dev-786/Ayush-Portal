@@ -6,9 +6,11 @@ import ContactCard from "../../components/message/ContactCard";
 import Navbar from "../../components/common/Navbar";
 import BottomNav from "../../components/common/BottomNav";
 import { useState } from "react";
+import useMessages from "../../components/message/useMessages";
 
 const Messages = () => {
   const [selectedChat, setSelectedChat] = useState({});
+  const { messages, sendMessage } = useMessages();
 
   const messageData = [
     {
@@ -52,7 +54,13 @@ const Messages = () => {
         mt={5}
         border="1px solid #ccc"
       >
-        <Grid minWidth={350} sx={{ bgcolor: grey[200] }} px={1} pt={4} item>
+        <Grid
+          minWidth={{ xs: "100%", md: 350 }}
+          sx={{ bgcolor: grey[200] }}
+          px={1}
+          pt={4}
+          item
+        >
           <Typography variant="h5" textAlign="center" mb={5}>
             Your Messages
           </Typography>
@@ -68,7 +76,7 @@ const Messages = () => {
         </Grid>
         <Grid
           overflow={"hidden"}
-          display={"flex"}
+          display={{ xs: "none", md: "flex" }}
           flexDirection={"column"}
           justifyContent={"space-between"}
           width={"100%"}
@@ -91,7 +99,7 @@ const Messages = () => {
                 userName={selectedChat?.user}
               />
               <Stack px={1}>
-                {selectedChat?.messages?.map((e, i) => {
+                {messages?.map((e, i) => {
                   return (
                     <Box
                       key={i}
@@ -103,7 +111,7 @@ const Messages = () => {
                       <Box
                         display={"flex"}
                         flexDirection={"column"}
-                        // alignItems={"center"}
+                        alignItems={"center"}
                         justifyContent={e.type === "sent" ? "end" : "start"}
                         bgcolor={e?.type === "sent" ? blue[500] : grey[300]}
                         px={2}
@@ -115,7 +123,7 @@ const Messages = () => {
                           color={e?.type === "sent" ? "white" : "black"}
                           variant="body2"
                         >
-                          {e.msg}
+                          {e.message}
                         </Typography>
                         <Typography
                           color={e?.type === "sent" ? "white" : "black"}

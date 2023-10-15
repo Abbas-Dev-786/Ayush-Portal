@@ -57,7 +57,6 @@ const RegisterForm = () => {
       toast.error("Please Accept the aggrement.");
       return;
     }
-
     mutate(cred);
 
     setCred({

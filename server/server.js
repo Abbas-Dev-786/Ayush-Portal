@@ -10,6 +10,8 @@ const mongoose = require("mongoose");
 const { Server } = require("socket.io");
 const http = require("http");
 const app = require("./app");
+const Message = require("./models/messageModel");
+const { getMostRecentMessages } = require("./utils/message");
 
 const server = http.createServer(app);
 
@@ -31,10 +33,39 @@ const io = new Server(server, {
 });
 io.on("connection", (socket) => {
   console.log("connected to socket client", socket.id);
-
-  socket.on("message", (msg) => {
-    console.log("message: " + msg);
+  
+ socket.broadcast.emit("user connected",{
+  id:socket.id
+ })
+  getMostRecentMessages().then(results => {
+    console.log(results)
+    socket.emit("recent-messages", results.reverse());
+  })
+  .catch(error => {
+    console.log(error)
+    socket.emit("recent-messages", []);
   });
+
+  socket.on("new-message",async (data) => {
+    try {
+      
+      const msg=new Message({
+        message:data?.message,
+        user:data?.user,
+        type:data?.type
+      })
+      
+
+      await msg.save()
+      io.emit("new-message",{user: data?.user,type:data?.type, message: data?.message})
+      
+    } catch (error) {
+      console.log("error: "+error);
+    }
+  });
+  socket.onAny((event,...arg)=>{
+    console.log(event,...arg)
+  })
 
   socket.on("disconnect", () => {
     console.log("disconnected", socket.id);
