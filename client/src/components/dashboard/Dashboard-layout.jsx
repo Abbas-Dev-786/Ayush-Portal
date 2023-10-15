@@ -1,10 +1,20 @@
 import PropTypes from "prop-types";
-import { Avatar, Box, Container, Grid, Stack, TextField } from "@mui/material";
-
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  IconButton,
+  Stack,
+  TextField,
+} from "@mui/material";
+import { deepPurple } from "@mui/material/colors";
 import BottomNav from "../common/BottomNav";
 import Navbar from "../common/Navbar";
 import UserCard from "./UserCard";
 import LinksCard from "./LinksCard";
+import { PostAddOutlined } from "@mui/icons-material";
 
 const DashboardLayout = ({ children }) => {
   return (
@@ -50,22 +60,35 @@ const DashboardLayout = ({ children }) => {
             <Box
               sx={{
                 width: "100%",
+                maxWidth: "sm",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-between",
-                bgcolor: "gainsboro",
+                justifyContent: "center",
                 p: 2,
-                borderRadius: 3,
+                borderRadius: "10px",
                 gap: 2,
               }}
             >
-              <Avatar sx={{ width: 60, height: 60 }} />
               <TextField
+                fullWidth
                 sx={{
-                  width: "90%",
+                  width: "100%",
                 }}
                 placeholder="Write Posts here..."
               />
+              <Button
+                size="large"
+                variant="contained"
+                sx={{
+                  bgcolor: deepPurple[500],
+                  px: 2.5,
+                  py: 1.5,
+                  ":hover": deepPurple[800],
+                }}
+              >
+                <PostAddOutlined />
+                Post
+              </Button>
             </Box>
             {children}
           </Grid>

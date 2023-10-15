@@ -3,6 +3,7 @@ import { Card, CardContent, List, ListItem, Typography } from "@mui/material";
 const LinksCard = () => {
   return (
     <Card
+      variant="outlined"
       sx={{
         // position: "relative",
         minHeight: 400,

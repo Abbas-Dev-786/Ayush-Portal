@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 
 const PostCard = ({ data, index }) => {
-  const { title } = data;
+  const { title, description, author, publishedAt, source, urlToImage } = data;
+  console.log(data);
 
   return (
     <Card
@@ -30,22 +31,22 @@ const PostCard = ({ data, index }) => {
         <Stack sx={{ mb: 2 }} flexDirection={"row"}>
           <Avatar sx={{ width: 50, height: 50, bgcolor: "orange" }} />
           <Stack sx={{ px: 1.5 }}>
-            <Typography variant="h6">Username</Typography>
+            <Typography variant="h6">
+              {author !== "" ? author : source.name}
+            </Typography>
             <Typography variant="body2">
-              {new Date().toLocaleTimeString()}
+              {new Date(publishedAt).toDateString()}
             </Typography>
           </Stack>
         </Stack>
         <Divider />
-        <Typography pt={2} variant="h5">
-          {index}: {title}
+        <Typography pt={2} fontWeight={600} mb={2} variant="h5">
+          {title}
         </Typography>
-        <Typography variant="body1">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
-          praesentium porro
-        </Typography>
+        <Typography variant="body2">{description}</Typography>
         <CardMedia
-          src=""
+          image={urlToImage}
+          component="img"
           sx={{
             mt: 2,
             borderRadius: "10px",

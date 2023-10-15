@@ -1,44 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Skeleton, Stack } from "@mui/material";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import PostCard from "./PostCard";
 
 const PostContainer = () => {
-  const LIMIT = 10;
-  const { inView } = useInView();
-
+  const [news, setNews] = useState([]);
+  const [IsLoading, setIsLoading] = useState(false);
   const delay = (time) => {
     return Promise.resolve((fn) => setTimeout(fn, time));
   };
 
-  const fetchTodos = async (page) => {
-    await delay(3000);
+  const fetchData = async () => {
+    setIsLoading(true);
     const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${LIMIT}`
+      `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=911a2f67abbf4fbca44b54563ee2d22b`
     );
     const data = await response.json();
-    return data;
+    await delay(3000);
+    setNews(data?.articles);
+    setIsLoading(false);
+    console.log({ news });
   };
 
-  const { data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery("todos", ({ pageParam = 1 }) => fetchTodos(pageParam), {
-      getNextPageParam: (lastPage, allPages) => {
-        const nextPage =
-          lastPage.length === LIMIT ? allPages.length + 1 : undefined;
-        return nextPage;
-      },
-    });
-
   useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [inView, fetchNextPage, hasNextPage]);
+    fetchData();
+  }, []);
 
   return (
     <Stack pb={10}>
-      {!isSuccess
+      {IsLoading
         ? [...Array(8)].map((_, i) => {
             return (
               <Skeleton
@@ -50,35 +41,9 @@ const PostContainer = () => {
               ></Skeleton>
             );
           })
-        : data.pages?.map((page) =>
-            page.map((post, i) => {
-              return <PostCard key={i} data={post} index={i} />;
-            })
-          )}
-      {isFetchingNextPage && <span>Fetching...</span>}
-      {!hasNextPage && <span>You have seen it all....</span>}
-
-      {/* {!data
-          ? [...Array(8)].map((_, i) => {
-              return (
-                <Skeleton
-                  key={i}
-                  sx={{ my: 1 }}
-                  variant="rectangular"
-                  width={800}
-                  height={300}
-                ></Skeleton>
-              );
-            })
-          : data?.map((post, i) => {
-              return (
-                <Card key={i} variant="outlined" sx={{ py: 2.5, px: 3, my: 1 }}>
-                  <Typography fontSize={{ sm: 8, md: 14 }}>
-                    {i}:{post?.title}
-                  </Typography>
-                </Card>
-              );
-            })} */}
+        : news?.map((post, i) => {
+            return <PostCard key={i} data={post} index={i} />;
+          })}
     </Stack>
   );
 };
