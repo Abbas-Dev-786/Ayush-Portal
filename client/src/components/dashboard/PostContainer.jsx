@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { Skeleton, Stack } from "@mui/material";
 import { useInfiniteQuery, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
@@ -12,15 +13,28 @@ const PostContainer = () => {
   };
 
   const fetchData = async () => {
+    const options = {
+      method: 'GET',
+      url: 'https://newsi-api.p.rapidapi.com/api/category',
+      params: {
+        category: 'business',
+        language: 'en',
+        country: 'in',
+        sort: 'top',
+        page: '1',
+        limit: '20'
+      },
+      headers: {
+        'X-RapidAPI-Key': '1e48fefbe9msh3e1b7e67a6a575fp1a93cfjsn8da2b2de0eea',
+        'X-RapidAPI-Host': 'newsi-api.p.rapidapi.com'
+      }
+    };
     setIsLoading(true);
-    const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=911a2f67abbf4fbca44b54563ee2d22b`
-    );
-    const data = await response.json();
+    const data = await axios.request(options);
+    // const data = await response.json();
     await delay(3000);
-    setNews(data?.articles);
+    setNews(data?.data);
     setIsLoading(false);
-    console.log({ news });
   };
 
   useEffect(() => {

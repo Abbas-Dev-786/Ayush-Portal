@@ -9,7 +9,7 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
+import { blue, deepPurple } from "@mui/material/colors";
 import BottomNav from "../common/BottomNav";
 import Navbar from "../common/Navbar";
 import UserCard from "./UserCard";
@@ -60,7 +60,7 @@ const DashboardLayout = ({ children }) => {
             <Box
               sx={{
                 width: "100%",
-                maxWidth: "sm",
+                maxWidth: "md",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -77,16 +77,16 @@ const DashboardLayout = ({ children }) => {
                 placeholder="Write Posts here..."
               />
               <Button
-                size="large"
                 variant="contained"
                 sx={{
-                  bgcolor: deepPurple[500],
+                  bgcolor: blue[800],
                   px: 2.5,
                   py: 1.5,
-                  ":hover": deepPurple[800],
+                  borderRadius:15,
+                  ":hover": blue[500],
                 }}
-              >
-                <PostAddOutlined />
+                startIcon={<PostAddOutlined />}
+              >    
                 Post
               </Button>
             </Box>
