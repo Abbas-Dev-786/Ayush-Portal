@@ -79,7 +79,7 @@ const UserMenu = ({ isOnLarge }) => {
         <MenuItem
           onClick={async () => {
             dispatch(logout());
-            // navigate(0);
+            navigate("/login");
           }}
         >
           Logout

@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
 const ProtectionWrapper = ({ children }) => {
+  const { user } = useSelector((state) => state.user);
+  const token = JSON.parse(localStorage?.getItem("user"))?.token;
   let location = useLocation();
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const checkUserStatus = () => {
-    const token = JSON.parse(localStorage?.getItem("user"))?.token;
-    if (location.pathname.includes("dashboard") || !token) {
-      setLoggedIn(false);
-      return <Navigate to={"/login"} state={{ from: location }} replace />;
-    }
-    setLoggedIn(true);
-    if (loggedIn || location.pathname.includes("login")) {
-      return <Navigate to={"/dashboard"} state={{ from: location }} replace />;
-    }
-  };
   useEffect(() => {
-    checkUserStatus();
-  }, [loggedIn]);
+    console.log({ user });
+    // (!user || location.pathname.includes("dashboard")) && (
+    //   <Navigate to={"/login"} state={{ from: location }} replace />
+    // );
 
+    // (user || location.pathname.includes("login")) && (
+    //   <Navigate to={"/dashboard"} state={{ from: location }} replace />
+    // );
+  }, [user]);
   return children;
 };
 

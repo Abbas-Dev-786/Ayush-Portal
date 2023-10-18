@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import AuthContainer from "../auth/AuthContainer";
-import MultiStep from "react-multistep";
 import StartupForm from "../auth/StartupForm";
 import RegisterForm from "../../pages/register/RegisterForm";
-import { deepOrange } from "@mui/material/colors";
-import { Box, Button, Step, StepLabel, Stepper } from "@mui/material";
+
+import {
+  Box,
+  Button,
+  Container,
+  Step,
+  StepLabel,
+  Stepper,
+} from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+
 const MultiStepForm = () => {
   const steps = [
-    { title: "StepTwo", component: <StartupForm /> },
     { title: "StepOne", component: <RegisterForm /> },
+    { title: "StepTwo", component: <StartupForm /> },
   ];
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -27,7 +33,7 @@ const MultiStepForm = () => {
   };
   return (
     <div className="wrapper">
-      <AuthContainer sx={{ mx: { xs: 1.5 }, my: 3, py: 3 }}>
+      <Container sx={{ mx: { xs: 1.5 }, my: 3, py: 3 }}>
         <Stepper activeStep={1} nonLinear>
           {steps.map((e, i) => {
             <Step key={i}>
@@ -59,7 +65,7 @@ const MultiStepForm = () => {
             Next <ArrowForward />
           </Button>
         </Box>
-      </AuthContainer>
+      </Container>
     </div>
   );
 };
