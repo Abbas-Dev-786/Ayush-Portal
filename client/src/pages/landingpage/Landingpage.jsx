@@ -1,13 +1,13 @@
 import React from 'react'
-import Navbar from './components/Navbar'
-import Carousel from '../landingpage/components/carousel'
+import Navbar from '../../components/home/Navbar'
+import Carousel from '../../components/home/carousel'
 import BottomNav from '../../components/common/BottomNav'
-import Page2 from './components/page2'
-import Page3 from './components/page3'
-import Page4 from './components/page4'
-import Page5 from './components/page5'
-import Page6 from './components/page6'
-import Footer from './components/footer'
+import Page2 from '../../components/home/page2'
+import Page3 from '../../components/home/page3'
+import Page4 from '../../components/home/page4'
+import Page5 from '../../components/home/page5'
+import Page6 from '../../components/home/page6'
+import Footer from '../../components/home/footer'
 
 const Landingpage = () => {
   return (

@@ -24,7 +24,7 @@ const App = () => {
         <Notification />
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
+            <Route index element={<Landingpage />} />
           </Route>
 
           <Route path="/dashboard" element={<Dashboard />} />
@@ -35,7 +35,6 @@ const App = () => {
           <Route path="/verifyEmail/:token" element={<VerifyEmail />} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/resetPassword/:token" element={<ResetPassword />} />
-          <Route path="/landingpage" element={<Landingpage/>}></Route>
 
           <Route
             path="*"

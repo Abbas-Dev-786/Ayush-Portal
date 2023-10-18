@@ -2,15 +2,7 @@ import AppBar from "@mui/material/AppBar";
 import {Box, Button} from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
-import {
-  MessageOutlined,
-  NewspaperOutlined,
-  NotificationsOutlined,
-  RocketLaunchOutlined,
-} from "@mui/icons-material";
 import { Divider, Stack, Typography } from "@mui/material";
-import UserMenu from "../../../components/common/UserMenu";
-import Searchbar from "../../../components/common//Searchbar";
 import { NavLink } from "react-router-dom";
 
 const navLinks = [
@@ -84,18 +76,25 @@ function Navbar() {
                 width={"20vw"}
                 justifyContent={"space-between"}
               >
+               <NavLink
+                to={"/login"}
+               >
                 <Button
-                    variant="contained"
-                    sx={{borderRadius:"25px", width:"8vw"}}
-                >Login</Button>
+                      variant="contained"
+                      sx={{borderRadius:"25px", width:"8vw"}}
+                  >Login</Button>
+               </NavLink>
                 <Typography>OR</Typography>
-                <Button
-                    variant="outlined"
-                    sx={{borderRadius:"25px", width:"8vw"}}
-                >Register</Button>
+                <NavLink
+                  to={"/register"}
+                >
+                  <Button
+                      variant="outlined"
+                      sx={{borderRadius:"25px", width:"8vw"}}
+                  >Register</Button>
+                </NavLink>
               </Box>
             </Stack>
-            <UserMenu />
           </Toolbar>
         </Container>
       </AppBar>

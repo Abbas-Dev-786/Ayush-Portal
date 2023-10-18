@@ -1,16 +1,27 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box } from '@mui/material';
+import {Autoplay, Pagination} from 'swiper/modules'
 
 
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/pagination'
+
 
 
 export default () => {
   return (
     <Swiper className='slider'
-      
+   
+      modules={[Autoplay, Pagination]}
+      autoplay={
+        {delay: 2500,}
+
+      }
+      pagination={
+        {clickable: true}
+      }
       spaceBetween={20}
       slidesPerView={1}
       loop={true}

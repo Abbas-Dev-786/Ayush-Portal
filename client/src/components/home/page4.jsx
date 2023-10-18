@@ -1,6 +1,6 @@
 import { Box, Typography, TextField, Button} from '@mui/material'
 import React from 'react'
-
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -31,11 +31,17 @@ const page4 = () => {
         </Typography>
         
 
-            <Button
-                textAlign = "center"
-                variant='contained'
+            <NavLink
+                to={"/register"}
                 sx={{width:"20%", height:"3vw", marginTop:"3vw"}}
-            >Sign Up</Button>
+            >
+                <Button
+                    textAlign = "center"
+                    variant='contained'
+                    size='large'
+                    
+                >Sign Up</Button>
+            </NavLink>
 
     </Box>
       
