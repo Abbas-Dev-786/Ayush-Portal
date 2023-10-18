@@ -12,6 +12,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Home from "./pages/home/Home";
 import Messages from "./pages/messages/Messages";
 import MultiStepForm from "./components/common/MultiStepForm";
+import ProtectionWrapper from "./components/common/ProtectionWrapper";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -27,12 +28,26 @@ const App = () => {
             <Route index element={<Home />} />
           </Route>
 
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectionWrapper>
+                <Dashboard />
+              </ProtectionWrapper>
+            }
+          />
           <Route path="/dashboard/messages" element={<Messages />} />
           <Route path="/dashboard/form" element={<MultiStepForm />} />
 
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={
+              <ProtectionWrapper>
+                <Login />
+              </ProtectionWrapper>
+            }
+          />
           <Route path="/verifyEmail/:token" element={<VerifyEmail />} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/resetPassword/:token" element={<ResetPassword />} />

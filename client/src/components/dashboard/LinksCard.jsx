@@ -1,44 +1,57 @@
-import { Card, CardContent, List, ListItem, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  List,
+  ListItem,
+  Typography,
+} from "@mui/material";
 
 const LinksCard = () => {
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        // position: "relative",
-        minHeight: 400,
-        maxWidth: 240,
-        minWidth: 240,
-      }}
+    <Box
+      flex={1}
+      minHeight={"100vh"}
+      justifyContent={"start"}
+      sx={{ display: { xs: "none", lg: "block" } }}
     >
-      <CardContent>
-        <Typography variant="h5" fontWeight={"600"} textAlign={"left"}>
-          Latest Trends
-        </Typography>
-        <List>
-          <ListItem>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
-            perspiciatis!
-          </ListItem>
-          <ListItem>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
-            perspiciatis!
-          </ListItem>
-          <ListItem>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
-            perspiciatis!
-          </ListItem>
-          <ListItem>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
-            perspiciatis!
-          </ListItem>
-          <ListItem>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
-            perspiciatis!
-          </ListItem>
-        </List>
-      </CardContent>
-    </Card>
+      <Card
+        variant="outlined"
+        sx={{
+          position: "fixed",
+          width: 250,
+          mt: 4,
+        }}
+      >
+        <CardContent>
+          <Typography variant="h5" fontWeight={"600"} textAlign={"left"}>
+            Latest Trends
+          </Typography>
+          <List>
+            <ListItem>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
+              perspiciatis!
+            </ListItem>
+            <ListItem>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
+              perspiciatis!
+            </ListItem>
+            <ListItem>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
+              perspiciatis!
+            </ListItem>
+            <ListItem>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
+              perspiciatis!
+            </ListItem>
+            <ListItem>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam,
+              perspiciatis!
+            </ListItem>
+          </List>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 

@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import { Avatar, IconButton, MenuItem, Menu } from "@mui/material";
 import { useState } from "react";
+import { logout } from "../../state/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const UserMenu = ({ isOnLarge }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -72,6 +76,14 @@ const UserMenu = ({ isOnLarge }) => {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>Account</MenuItem>
+        <MenuItem
+          onClick={async () => {
+            dispatch(logout());
+            // navigate(0);
+          }}
+        >
+          Logout
+        </MenuItem>
       </Menu>
     </>
   );

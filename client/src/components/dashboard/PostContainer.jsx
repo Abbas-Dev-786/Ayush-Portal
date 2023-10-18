@@ -1,49 +1,92 @@
 import { useEffect, useState } from "react";
-import { Skeleton, Stack } from "@mui/material";
-import { useInfiniteQuery, useQuery } from "react-query";
+import axios from "axios";
+import { Box, CircularProgress, Skeleton, Stack } from "@mui/material";
+import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import PostCard from "./PostCard";
 
+// const delay = (time) => {
+//   return Promise.resolve((fn) => setTimeout(fn, time));
+// };
 const PostContainer = () => {
-  const [news, setNews] = useState([]);
+  const { ref, inView } = useInView();
   const [IsLoading, setIsLoading] = useState(false);
-  const delay = (time) => {
-    return Promise.resolve((fn) => setTimeout(fn, time));
+  const LIMIT = 10;
+
+  const fetchData = async (page) => {
+    setIsLoading(true);
+    const options = {
+      method: "GET",
+      url: "https://newsi-api.p.rapidapi.com/api/category",
+      params: {
+        category: "business",
+        language: "en",
+        country: "in",
+        sort: "top",
+        page: page,
+        limit: LIMIT,
+      },
+      headers: {
+        "X-RapidAPI-Key": "1e48fefbe9msh3e1b7e67a6a575fp1a93cfjsn8da2b2de0eea",
+        "X-RapidAPI-Host": "newsi-api.p.rapidapi.com",
+      },
+    };
+    const data = await axios.request(options);
+    setIsLoading(false);
+    return data?.data;
   };
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=911a2f67abbf4fbca44b54563ee2d22b`
-    );
-    const data = await response.json();
-    await delay(3000);
-    setNews(data?.articles);
-    setIsLoading(false);
-    console.log({ news });
-  };
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery("news", ({ pageParam = 1 }) => fetchData(pageParam), {
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage =
+          lastPage.length === LIMIT ? allPages.length + 1 : undefined;
+        return nextPage;
+      },
+    });
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
 
   return (
-    <Stack pb={10}>
+    <Stack width={"100%"} pb={10} px={2}>
       {IsLoading
         ? [...Array(8)].map((_, i) => {
             return (
               <Skeleton
                 key={i}
-                sx={{ my: 1 }}
-                variant="rectangular"
-                width={800}
-                height={300}
+                sx={{
+                  my: 1,
+                  height: 400,
+                }}
+                variant="rounded"
               ></Skeleton>
             );
           })
-        : news?.map((post, i) => {
-            return <PostCard key={i} data={post} index={i} />;
-          })}
+        : data?.pages?.map((page) =>
+            page?.map((post, i) => {
+              if (page.length === i + 1) {
+                return <PostCard ref={ref} key={post._id} data={post} />;
+              }
+              return <PostCard ref={null} key={post._id} data={post} />;
+            })
+          )}
+      {isFetchingNextPage && (
+        <Box
+          mt={2}
+          width={"100%"}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          {" "}
+          <CircularProgress />
+        </Box>
+      )}
+      {!hasNextPage && <span>You have seen it all</span>}
     </Stack>
   );
 };
