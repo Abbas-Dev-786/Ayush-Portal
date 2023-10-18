@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Box, CircularProgress, Skeleton, Stack } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import PostCard from "./PostCard";
 
-// const delay = (time) => {
-//   return Promise.resolve((fn) => setTimeout(fn, time));
-// };
 const PostContainer = () => {
   const { ref, inView } = useInView();
   const [IsLoading, setIsLoading] = useState(false);
@@ -86,7 +89,18 @@ const PostContainer = () => {
           <CircularProgress />
         </Box>
       )}
-      {!hasNextPage && <span>You have seen it all</span>}
+      {!hasNextPage && (
+        <Box
+          mt={2}
+          width={"100%"}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          {" "}
+          <Typography variant="body1">You have seen it all</Typography>
+        </Box>
+      )}
     </Stack>
   );
 };

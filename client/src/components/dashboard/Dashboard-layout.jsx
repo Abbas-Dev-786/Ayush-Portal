@@ -7,7 +7,8 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import { blue, deepPurple } from "@mui/material/colors";
+
+import { blue } from "@mui/material/colors";
 import BottomNav from "../common/BottomNav";
 import Navbar from "../common/Navbar";
 import UserCard from "./UserCard";
