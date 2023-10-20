@@ -29,7 +29,7 @@ const UserCard = () => {
     >
       <CardMedia
         sx={{ height: 120, bgcolor: "gainsboro" }}
-        image="./../../../public/images/user_banner.png"
+        image="./images/user_banner.png"
         title="user image"
       />
       <CardContent
