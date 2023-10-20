@@ -66,3 +66,53 @@ export const resetPassword = async ({ password, confirmPassword, token }) => {
     throw Error(message);
   }
 };
+
+export const getAllChats = async () => {
+  try {
+    const res = await customRequest.get("/messages");
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const getMessages = async ({ queryKey }) => {
+  try {
+    const res = await customRequest.get(`/messages/${queryKey[1]}`);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    const res = await customRequest.get("/users");
+    return res.data.data.docs;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const createMeeting = async (data) => {
+  try {
+    const res = await customRequest.post(`/meetings`, data);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
+
+export const joinMeeting = async ({ queryKey }) => {
+  try {
+    const res = await customRequest.get(`/meetings/join/${queryKey[1]}`);
+    return res.data.data;
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+};
