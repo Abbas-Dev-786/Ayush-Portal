@@ -2,20 +2,21 @@ import PropTypes from "prop-types";
 import { Avatar, Stack, Typography, Box } from "@mui/material";
 import { useState } from "react";
 
-const ContactCard = ({ data, setSelectedChat, selectedChat }) => {
+const ContactCard = ({ data, setSelectedChat, selectedChat, lastMessage }) => {
   const [active, setActive] = useState("");
-  const { name, user, messages } = data;
-  const lastMsg = messages[messages.length - 1].msg;
+  const { firstName, lastName, email } = data;
+  const user = firstName[0] + lastName[0];
+  // const lastMsg = messages[messages.length - 1].msg;
 
   return (
     <Box
       mx={1}
       p={2}
-      bgcolor={active === selectedChat.user ? "dodgerblue" : "white"}
+      bgcolor={active === selectedChat.email ? "dodgerblue" : "white"}
       mb={1}
       component="div"
       onClick={() => {
-        setActive(user);
+        setActive(email);
         setSelectedChat(data);
       }}
       sx={{ cursor: "pointer" }}
@@ -29,15 +30,16 @@ const ContactCard = ({ data, setSelectedChat, selectedChat }) => {
         gap={1.5}
       >
         <Avatar sx={{ borderRadius: "10px" }}>{user}</Avatar>
-        <div>
-          <Typography fontWeight={500} color={"black"} variant="body1">
-            {name}
+        <div style={{ display: "block", width: "60%" }}>
+          <Typography fontWeight={500} color={"black"} variant="body1" noWrap>
+            {firstName + " " + lastName}
           </Typography>
           <Typography
             color={active === selectedChat.user ? "white" : "gray"}
+            noWrap
             variant="body2"
           >
-            {lastMsg}
+            {lastMessage}
           </Typography>
         </div>
       </Stack>

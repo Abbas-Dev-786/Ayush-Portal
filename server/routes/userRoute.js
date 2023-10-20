@@ -5,9 +5,9 @@ const userController = require("./../controllers/userController");
 
 const router = express.Router();
 
-router.use(authController.protect);
-
 router.get("/", userController.getAllUsers);
+
+router.use(authController.protect);
 
 router.route("/me").get(userController.setMe, userController.getUser);
 

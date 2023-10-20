@@ -10,7 +10,7 @@ import {
 const navLinks = [
   { text: "News", link: "", icon: <NewspaperOutlined /> },
   { text: "Trending", link: "", icon: <RocketLaunchOutlined /> },
-  { text: "Messages", link: "", icon: <MessageOutlined /> },
+  { text: "Messages", link: "/dashboard/messages", icon: <MessageOutlined /> },
   { text: "Notifications", link: "", icon: <NotificationsOutlined /> },
 ];
 const BottomNav = () => {
