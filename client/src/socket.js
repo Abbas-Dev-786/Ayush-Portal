@@ -6,4 +6,10 @@ const URL = import.meta.env.PROD
 
 export const socket = io(URL, {
   autoConnect: false,
+  transports: ["websocket"],
+  secure: true,
+});
+
+socket.on("connect_error", (err) => {
+  console.log(err.message); // prints the message associated with the error
 });

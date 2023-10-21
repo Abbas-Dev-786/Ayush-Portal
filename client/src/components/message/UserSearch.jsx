@@ -1,9 +1,10 @@
-import { Autocomplete, TextField } from "@mui/material";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { Autocomplete, TextField, Box } from "@mui/material";
 import { Search } from "lucide-react";
 import { useQuery } from "react-query";
-import { getAllUsers } from "../../api";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { getAllUsers } from "../../api";
 
 const UserSearch = ({ setSelectedChat }) => {
   const [searchedUser, setSearchedUser] = useState("");
@@ -18,13 +19,16 @@ const UserSearch = ({ setSelectedChat }) => {
       autoHighlight={true}
       size="small"
       inputValue={searchedUser}
+      key={(option) => option._id}
       onInputChange={() => {
         setSearchedUser("");
       }}
       onChange={(_, user) => {
         setSelectedChat(user);
       }}
-      getOptionLabel={(option) => `${option?.firstName} ${option?.lastName}`}
+      getOptionLabel={(option) =>
+        `${option?.firstName} ${option?.lastName} ${option._id}`
+      }
       options={data?.filter((el) => el._id !== user._id) || []}
       sx={{
         width: 300,
@@ -34,6 +38,11 @@ const UserSearch = ({ setSelectedChat }) => {
         "& .MuiAutocomplete-popupIndicator": { transform: "none" },
       }}
       popupIcon={<Search />}
+      renderOption={(props, option) => (
+        <Box component="li" {...props}>
+          {option.firstName + " " + option.lastName}
+        </Box>
+      )}
       renderInput={(params) => (
         <TextField {...params} label="Search for Users" />
       )}
@@ -42,3 +51,7 @@ const UserSearch = ({ setSelectedChat }) => {
 };
 
 export default UserSearch;
+
+UserSearch.propTypes = {
+  setSelectedChat: PropTypes.func,
+};

@@ -11,7 +11,6 @@ const { Server } = require("socket.io");
 const http = require("http");
 const app = require("./app");
 const Message = require("./models/messageModel");
-const fs = require("fs");
 
 const server = http.createServer(app);
 
@@ -29,6 +28,8 @@ mongoose
 const io = new Server(server, {
   cors: {
     origin: "*",
+    credentials: true,
+    // preflightContinue: true,
   },
 });
 
