@@ -19,9 +19,9 @@ module.exports.getAllChats = catchAsync(async (req, res, next) => {
         },
       },
     },
-    {
-      $sort: { createdAt: -1 },
-    },
+    // {
+    //   $sort: { createdAt: -1 },
+    // },
     {
       $group: {
         _id: "$senderId",
@@ -51,7 +51,7 @@ module.exports.getAllChats = catchAsync(async (req, res, next) => {
       $unwind: "$user",
     },
     {
-      $sort: { createdAt: -1 },
+      $sort: { createdAt: 1 },
     },
   ]);
 

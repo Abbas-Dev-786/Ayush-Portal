@@ -36,6 +36,8 @@ io.on("connection", (socket) => {
 
   socket.on("send-msg", async ({ from, to, message }) => {
     await Message.create({ from, to, message });
+
+    socket.emit("res-msg", [from, to]);
   });
 
   socket.on("disconnect", () => {

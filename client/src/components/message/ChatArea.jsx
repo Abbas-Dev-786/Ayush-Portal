@@ -53,7 +53,7 @@ const ChatArea = ({ selectedChat, setSelectedChat }) => {
                   width={"100%"}
                   textAlign={"end"}
                 >
-                  {new Date().toLocaleTimeString()}
+                  {new Date(e.createdAt).toUTCString()}
                 </Typography>
               </Box>
             </Box>

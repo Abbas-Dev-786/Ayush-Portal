@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { joinMeeting } from "../../api";
+import logo from "./../../../public/images/logo.svg";
 
 const Meeting = () => {
   const { user } = useSelector((state) => state.user);
@@ -36,7 +37,7 @@ const Meeting = () => {
         //   title: "Title",
         // },
         branding: {
-          logoURL: "./images/logo.svg", // Th branding LOGO URL.
+          logoURL: logo, // Th branding LOGO URL.
         },
 
         scenario: {
