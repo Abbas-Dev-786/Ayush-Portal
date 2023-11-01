@@ -23,6 +23,7 @@ const BottomNav = () => {
         left: 0,
         right: 0,
         display: { xs: "flex", md: "none" },
+        zIndex: 20,
       }}
       elevation={4}
     >

@@ -1,7 +1,7 @@
 import { Grid, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import RegisterForm from "./RegisterForm";
+import MultiStepForm from "../../components/common/MultiStepForm";
 import AuthContainer from "../../components/auth/AuthContainer";
 
 const RegisterPage = () => {
@@ -24,7 +24,7 @@ const RegisterPage = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <RegisterForm />
+            <MultiStepForm />
           </Grid>
         </Grid>
       </AuthContainer>

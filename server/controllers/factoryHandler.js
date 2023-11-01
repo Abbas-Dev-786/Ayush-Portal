@@ -58,3 +58,10 @@ module.exports.createDoc = (Model) =>
 
     res.status(200).json({ status: "success", data: doc });
   });
+
+module.exports.ImageUpload = (Model) =>
+  catchAsync(async (req, res) => {
+      console.log(req.file);
+      return res.json({ image: req.file.path });
+    })
+ 

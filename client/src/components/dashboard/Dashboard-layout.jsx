@@ -1,89 +1,77 @@
 import PropTypes from "prop-types";
-import { Avatar, Box, Container, Grid, Stack, TextField } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Stack,
+  TextField,
+} from "@mui/material";
 
+import { blue } from "@mui/material/colors";
 import BottomNav from "../common/BottomNav";
 import Navbar from "../common/Navbar";
 import UserCard from "./UserCard";
 import LinksCard from "./LinksCard";
+import { PostAddOutlined } from "@mui/icons-material";
 
 const DashboardLayout = ({ children }) => {
   return (
-    <Stack minHeight={"100vh"} width={"100%"}>
+    <Container maxWidth="xl">
       <Navbar />
       <BottomNav />
-      <Container maxWidth="xl">
-        <Grid
-          sx={{ mt: 5 }}
-          minHeight={"100vh"}
-          width={"100%"}
+      <Stack spacing={2} direction={"row"} minHeight={"100vh"} width={"100%"}>
+        <UserCard />
+
+        <Stack
+          flex={4}
           display={"flex"}
-          columns={3}
-          container
+          flexDirection={"column"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          width={"100%"}
+          p={{ xs: 0, md: 2 }}
+          // bgcolor={"blue"}
         >
-          <Grid
-            display={{ xs: "none", md: "flex" }}
-            flexDirection={"column"}
-            alignItems={"center"}
-            justifyContent={"start"}
-            minWidth={200}
-            minHeight={"100vh"}
-            // position="fixed"
-            sx={{ bgcolor: "", px: 1, py: 2, mx: 1 }}
-            item
-          >
-            <UserCard />
-          </Grid>
-          <Grid
-            minHeight={"100vh"}
+          <Box
             sx={{
-              bgcolor: "",
-              p: 1.5,
+              width: "100%",
+              maxWidth: "md",
               display: "flex",
-              flexDirection: "column",
               alignItems: "center",
-              justifyContent: "start",
+              justifyContent: "center",
+              p: 2,
+              borderRadius: "10px",
               gap: 2,
             }}
-            item
-            flexGrow={1}
           >
-            <Box
+            <TextField
+              fullWidth
               sx={{
                 width: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                bgcolor: "gainsboro",
-                p: 2,
-                borderRadius: 3,
-                gap: 2,
               }}
+              placeholder="Write Posts here..."
+            />
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: blue[800],
+                px: 2.5,
+                py: 1.5,
+
+                ":hover": blue[500],
+              }}
+              startIcon={<PostAddOutlined />}
             >
-              <Avatar sx={{ width: 60, height: 60 }} />
-              <TextField
-                sx={{
-                  width: "90%",
-                }}
-                placeholder="Write Posts here..."
-              />
-            </Box>
-            {children}
-          </Grid>
-          <Grid
-            display={{ xs: "none", md: "flex" }}
-            flexDirection={"column"}
-            alignItems={"center"}
-            justifyContent={"start"}
-            minWidth={200}
-            minHeight={"100vh"}
-            sx={{ bgcolor: "", px: 1, py: 2, mx: 1 }}
-            item
-          >
-            <LinksCard />
-          </Grid>
-        </Grid>
-      </Container>
-    </Stack>
+              Post
+            </Button>
+          </Box>
+          {children}
+        </Stack>
+
+        <LinksCard />
+      </Stack>
+    </Container>
   );
 };
 
@@ -92,3 +80,13 @@ export default DashboardLayout;
 DashboardLayout.propTypes = {
   children: PropTypes.any,
 };
+
+// bgcolor={"violet"}
+// display={{ xs: "none", md: "flex" }}
+// flexDirection={"column"}
+// alignItems={"center"}
+// justifyContent={"start"}
+// minWidth={240}
+// minHeight={"100vh"}
+// sx={{ bgcolor: "", px: 1, py: 2, mx: 1 }}
+// item

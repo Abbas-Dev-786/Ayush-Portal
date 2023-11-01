@@ -46,6 +46,8 @@ const createAndSendToken = (res, user) => {
   user.emailVerifyToken = undefined;
   user.__v = undefined;
 
+  // for test
+  console.log({token,user})
   res.status(200).json({ status: "success", data: { user, token } });
 };
 

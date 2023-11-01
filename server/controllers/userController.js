@@ -9,6 +9,8 @@ module.exports.updatetUser = factory.updateDoc(User);
 
 module.exports.deletetUser = factory.deleteDoc(User);
 
+module.exports.ImageUpload=factory.ImageUpload(User)
+
 module.exports.setMe = (req, res, next) => {
   req.params.id = req.user._id;
   next();

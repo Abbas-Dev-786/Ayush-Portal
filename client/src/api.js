@@ -29,6 +29,7 @@ export const registerUser = async (data) => {
 export const LoginUser = async (data) => {
   try {
     const res = await customRequest.post(`/auth/login`, data);
+
     return res.data.data;
   } catch (err) {
     const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;

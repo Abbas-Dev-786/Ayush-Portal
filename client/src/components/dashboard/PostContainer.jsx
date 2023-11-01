@@ -1,28 +1,46 @@
-import { useEffect } from "react";
-import { Skeleton, Stack } from "@mui/material";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  Box,
+  CircularProgress,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import PostCard from "./PostCard";
 
 const PostContainer = () => {
+  const { ref, inView } = useInView();
+  const [IsLoading, setIsLoading] = useState(false);
   const LIMIT = 10;
-  const { inView } = useInView();
 
-  const delay = (time) => {
-    return Promise.resolve((fn) => setTimeout(fn, time));
+  const fetchData = async (page) => {
+    setIsLoading(true);
+    const options = {
+      method: "GET",
+      url: "https://newsi-api.p.rapidapi.com/api/category",
+      params: {
+        category: "business",
+        language: "en",
+        country: "in",
+        sort: "top",
+        page: page,
+        limit: LIMIT,
+      },
+      headers: {
+        "X-RapidAPI-Key": "1e48fefbe9msh3e1b7e67a6a575fp1a93cfjsn8da2b2de0eea",
+        "X-RapidAPI-Host": "newsi-api.p.rapidapi.com",
+      },
+    };
+    const data = await axios.request(options);
+    setIsLoading(false);
+    return data?.data;
   };
 
-  const fetchTodos = async (page) => {
-    await delay(3000);
-    const response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${LIMIT}`
-    );
-    const data = await response.json();
-    return data;
-  };
-
-  const { data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery("todos", ({ pageParam = 1 }) => fetchTodos(pageParam), {
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery("news", ({ pageParam = 1 }) => fetchData(pageParam), {
       getNextPageParam: (lastPage, allPages) => {
         const nextPage =
           lastPage.length === LIMIT ? allPages.length + 1 : undefined;
@@ -34,51 +52,55 @@ const PostContainer = () => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, fetchNextPage, hasNextPage]);
+  }, [inView, hasNextPage, fetchNextPage]);
 
   return (
-    <Stack pb={10}>
-      {!isSuccess
+    <Stack width={"100%"} pb={10} px={2}>
+      {IsLoading
         ? [...Array(8)].map((_, i) => {
             return (
               <Skeleton
                 key={i}
-                sx={{ my: 1 }}
-                variant="rectangular"
-                width={800}
-                height={300}
+                sx={{
+                  my: 1,
+                  height: 400,
+                }}
+                variant="rounded"
               ></Skeleton>
             );
           })
-        : data.pages?.map((page) =>
-            page.map((post, i) => {
-              return <PostCard key={i} data={post} index={i} />;
+        : data?.pages?.map((page) =>
+            page?.map((post, i) => {
+              if (page.length === i + 1) {
+                return <PostCard ref={ref} key={post._id} data={post} />;
+              }
+              return <PostCard ref={null} key={post._id} data={post} />;
             })
           )}
-      {isFetchingNextPage && <span>Fetching...</span>}
-      {!hasNextPage && <span>You have seen it all....</span>}
-
-      {/* {!data
-          ? [...Array(8)].map((_, i) => {
-              return (
-                <Skeleton
-                  key={i}
-                  sx={{ my: 1 }}
-                  variant="rectangular"
-                  width={800}
-                  height={300}
-                ></Skeleton>
-              );
-            })
-          : data?.map((post, i) => {
-              return (
-                <Card key={i} variant="outlined" sx={{ py: 2.5, px: 3, my: 1 }}>
-                  <Typography fontSize={{ sm: 8, md: 14 }}>
-                    {i}:{post?.title}
-                  </Typography>
-                </Card>
-              );
-            })} */}
+      {isFetchingNextPage && (
+        <Box
+          mt={2}
+          width={"100%"}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          {" "}
+          <CircularProgress />
+        </Box>
+      )}
+      {!hasNextPage && (
+        <Box
+          mt={2}
+          width={"100%"}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          {" "}
+          <Typography variant="body1">You have seen it all</Typography>
+        </Box>
+      )}
     </Stack>
   );
 };

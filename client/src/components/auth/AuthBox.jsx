@@ -10,7 +10,7 @@ const AuthBox = ({ children }) => {
       justifyContent="space-evenly"
       height="100%"
     >
-      <Box component="img" height={50} mb={3} src="./images/logo.svg" />
+      <Box component="img" mt={3} height={50} mb={3} src="/images/logo.svg" />
 
       {children}
 
