@@ -1,11 +1,14 @@
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, Step, Stepper, StepButton } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import MultiStepForm from "../../components/common/MultiStepForm";
 import AuthContainer from "../../components/auth/AuthContainer";
+import { FormContext } from "./FormContext";
+import { useContext } from "react";
+import { useEffect } from "react";
 
 const RegisterPage = () => {
   const theme = useTheme();
+  const { steps, activeStep, setActiveStep, user } = useContext(FormContext);
 
   return (
     <div className="wrapper">
@@ -23,8 +26,25 @@ const RegisterPage = () => {
               className="side-image"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <MultiStepForm />
+          <Grid item xs={12} md={6} py={3}>
+            <Box px={1.5} pt={2}>
+              <Stepper activeStep={activeStep} nonLinear>
+                {steps.map((e, i) => {
+                  console.log(user.role === e.role);
+                  return (
+                    <Step key={e.title}>
+                      <StepButton
+                        color="inherit"
+                        onClick={() => setActiveStep(i)}
+                      >
+                        {e.title}
+                      </StepButton>
+                    </Step>
+                  );
+                })}
+              </Stepper>
+            </Box>
+            {steps[activeStep].component}
           </Grid>
         </Grid>
       </AuthContainer>

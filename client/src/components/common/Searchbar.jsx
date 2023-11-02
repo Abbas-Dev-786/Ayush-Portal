@@ -5,7 +5,9 @@ const Searchbar = () => {
     <TextField
       fullWidth
       sx={{
-        visibility: { xs: "hidden", md: "visible" },
+        maxWidth: "sm",
+        px: 3,
+        display: { xs: "none", md: "flex" },
         "& .MuiOutlinedInput-root": {
           borderRadius: "50px",
 

@@ -25,6 +25,22 @@ export const registerUser = async (data) => {
     throw Error(message);
   }
 };
+export const imageUpload=async(data)=>{
+  try {
+   const res= await fetch(`${baseURL}/auth/profile`,{
+      method:"POST",
+      body:{
+        file:data
+      }
+    })
+    const data=await res.json()
+    console.log(data)
+    return data
+  } catch (err) {
+    const message = err?.response?.data?.message || DEFAULT_ERROR_MESSAGE;
+    throw Error(message);
+  }
+}
 
 export const LoginUser = async (data) => {
   try {

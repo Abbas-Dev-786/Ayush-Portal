@@ -1,5 +1,5 @@
-const dayjs = require("dayjs");
 const Meeting = require("../models/meetingModel");
+const dayjs = require("dayjs");
 const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
 const { generateToken04 } = require("../utils/generateMeetingToken");

@@ -11,7 +11,9 @@ import {
 import { forwardRef } from "react";
 
 const PostCard = forwardRef(function (props, ref) {
-  const { title, body, hasBody, publishedAt, sourceName, image } = props?.data;
+  const { title, body, hasBody, publishedAt, sourceName, image, link } =
+    props?.data;
+  console.log(props);
   return (
     <Card
       ref={ref}
@@ -42,10 +44,18 @@ const PostCard = forwardRef(function (props, ref) {
         </Typography>
         {hasBody && (
           <Typography variant="body2">
-            {String(body).substring(
-              0,
-              body.length - String(body).lastIndexOf(" .")
-            )}
+            {String(body).length > 100
+              ? body.slice(0, body.length / 2) + "..."
+              : body}
+            <Typography
+              color={"blue"}
+              variant="body1"
+              component={"a"}
+              href={link}
+              target="_blank"
+            >
+              Read More
+            </Typography>
           </Typography>
         )}
         <CardMedia

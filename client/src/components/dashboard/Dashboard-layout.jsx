@@ -14,64 +14,69 @@ import Navbar from "../common/Navbar";
 import UserCard from "./UserCard";
 import LinksCard from "./LinksCard";
 import { PostAddOutlined } from "@mui/icons-material";
+import ProtectionWrapper from "../common/ProtectionWrapper";
 
 const DashboardLayout = ({ children }) => {
   return (
-    <Container maxWidth="xl">
-      <Navbar />
-      <BottomNav />
-      <Stack spacing={2} direction={"row"} minHeight={"100vh"} width={"100%"}>
-        <UserCard />
+    <ProtectionWrapper>
+      <Container maxWidth="xl">
+        <Navbar />
+        <BottomNav />
+        <Stack spacing={2} direction={"row"} minHeight={"100vh"} width={"100%"}>
+          <UserCard />
 
-        <Stack
-          flex={4}
-          display={"flex"}
-          flexDirection={"column"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          width={"100%"}
-          p={{ xs: 0, md: 2 }}
-          // bgcolor={"blue"}
-        >
-          <Box
-            sx={{
-              width: "100%",
-              maxWidth: "md",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              p: 2,
-              borderRadius: "10px",
-              gap: 2,
-            }}
+          <Stack
+            flex={4}
+            display={"flex"}
+            flexDirection={"column"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            width={"100%"}
+            p={{ xs: 0, md: 2 }}
+            // bgcolor={"blue"}
           >
-            <TextField
-              fullWidth
+            <Box
               sx={{
+                mt: 3,
+
                 width: "100%",
+                maxWidth: "md",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                p: 2,
+                borderRadius: "10px",
+                gap: 2,
               }}
-              placeholder="Write Posts here..."
-            />
-            <Button
-              variant="contained"
-              sx={{
-                bgcolor: blue[800],
-                px: 2.5,
-                py: 1.5,
-
-                ":hover": blue[500],
-              }}
-              startIcon={<PostAddOutlined />}
             >
-              Post
-            </Button>
-          </Box>
-          {children}
-        </Stack>
+              <TextField
+                fullWidth
+                sx={{
+                  width: "100%",
+                }}
+                placeholder="Write Posts here..."
+              />
+              <Button
+                variant="contained"
+                sx={{
+                  bgcolor: blue[800],
+                  px: 2.5,
+                  py: 1.5,
 
-        <LinksCard />
-      </Stack>
-    </Container>
+                  ":hover": blue[500],
+                }}
+                startIcon={<PostAddOutlined />}
+              >
+                Post
+              </Button>
+            </Box>
+            {children}
+          </Stack>
+
+          <LinksCard />
+        </Stack>
+      </Container>
+    </ProtectionWrapper>
   );
 };
 
