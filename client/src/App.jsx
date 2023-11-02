@@ -13,6 +13,7 @@ import Home from "./pages/home/Home";
 import Messages from "./pages/messages/Messages";
 import MultiStepForm from "./components/common/MultiStepForm";
 import ProtectionWrapper from "./components/common/ProtectionWrapper";
+import Meeting from "./pages/meeting/Meeting";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -38,6 +39,7 @@ const App = () => {
           />
           <Route path="/dashboard/messages" element={<Messages />} />
           <Route path="/dashboard/form" element={<MultiStepForm />} />
+          <Route path="/dashboard/meetings/:meetingId" element={<Meeting />} />
 
           <Route path="/register" element={<RegisterPage />} />
           <Route
