@@ -16,7 +16,7 @@ const Meeting = () => {
     // generate Kit Token
 
     if (data?.token) {
-      const appID = 1437058845;
+      const appID = 844198433;
       const kitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
         appID,
         data.token,
