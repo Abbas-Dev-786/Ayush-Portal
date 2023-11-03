@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -7,8 +7,8 @@ const ProtectionWrapper = ({ children }) => {
   const token = JSON.parse(localStorage?.getItem("user"))?.token;
   let { pathname } = useLocation();
   let navigate = useNavigate();
+
   useEffect(() => {
-    console.log({ user });
     if (pathname.includes("/dashboard") && !token) {
       navigate("/login");
     }
@@ -18,7 +18,7 @@ const ProtectionWrapper = ({ children }) => {
     if (pathname.includes("/register") && token) {
       navigate("/dashboard");
     }
-  }, []);
+  }, [pathname, token]);
   return children;
 };
 

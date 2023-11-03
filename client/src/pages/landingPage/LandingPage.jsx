@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../../components/home/Navbar";
 import Carousel from "../../components/home/Carousel";
 import BottomNav from "../../components/common/BottomNav";

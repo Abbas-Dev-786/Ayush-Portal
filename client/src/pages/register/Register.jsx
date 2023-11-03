@@ -4,7 +4,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import AuthContainer from "../../components/auth/AuthContainer";
 import { FormContext } from "./FormContext";
 import { useContext } from "react";
-import { useEffect } from "react";
 
 const RegisterPage = () => {
   const theme = useTheme();

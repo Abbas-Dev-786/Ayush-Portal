@@ -9,11 +9,12 @@ import VerifyEmail from "./pages/login/VerifyEmail";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
-import Home from "./pages/home/Home";
+// import Home from "./pages/home/Home";
 import Messages from "./pages/messages/Messages";
-import MultiStepForm from "./components/common/MultiStepForm";
+// import MultiStepForm from "./components/common/MultiStepForm";
 import ProtectionWrapper from "./components/common/ProtectionWrapper";
 import Meeting from "./pages/meeting/Meeting";
+import Landingpage from "./pages/landingPage/LandingPage";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -26,7 +27,7 @@ const App = () => {
         <Notification />
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
+            <Route index element={<Landingpage />} />
           </Route>
 
           <Route
@@ -38,7 +39,7 @@ const App = () => {
             }
           />
           <Route path="/dashboard/messages" element={<Messages />} />
-          <Route path="/dashboard/form" element={<MultiStepForm />} />
+          {/* <Route path="/dashboard/form" element={<MultiStepForm />} /> */}
           <Route path="/dashboard/meetings/:meetingId" element={<Meeting />} />
 
           <Route path="/register" element={<RegisterPage />} />
