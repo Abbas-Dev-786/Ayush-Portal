@@ -1,4 +1,5 @@
 import BottomNavigation from "@mui/material/BottomNavigation";
+import {NavLink} from "react-router-dom";
 import { BottomNavigationAction, Paper } from "@mui/material";
 import {
   MessageOutlined,
@@ -34,11 +35,12 @@ const BottomNav = () => {
         }}
       >
         {navLinks.map((el) => (
+         <NavLink key={el.text} to={el.link}>
           <BottomNavigationAction
-            key={el.text}
             label={el.text}
             icon={el.icon}
           />
+         </NavLink>
         ))}
       </BottomNavigation>
     </Paper>
