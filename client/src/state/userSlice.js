@@ -21,6 +21,7 @@ export const userSlice = createSlice({
       state.token = "";
 
       localStorage.removeItem("user");
+      
     },
   },
 });
