@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation } from "react-query";
 import {
@@ -15,12 +15,11 @@ import {
 import { registerUser } from "../../api";
 import { Link } from "react-router-dom";
 import AuthBox from "../../components/auth/AuthBox";
-import { FormContext } from "./FormContext";
 
 const ROLES = ["User", "Startup", "Investor", "Incubator"];
 
 const RegisterForm = () => {
-  const { setUser, handleNext } = useContext(FormContext);
+  //   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   const [cred, setCred] = useState({
     firstName: "",
@@ -30,7 +29,6 @@ const RegisterForm = () => {
     password: "",
     description: "",
     role: "",
-    // profileImage: "",
   });
 
   const { mutate, isLoading } = useMutation(registerUser, {
@@ -59,9 +57,17 @@ const RegisterForm = () => {
       toast.error("Please Accept the aggrement.");
       return;
     }
-    setUser(cred);
-    console.log(cred);
-    handleNext();
+    mutate(cred);
+
+    setCred({
+      firstName: "",
+      lastName: "",
+      email: "",
+      confirmPassword: "",
+      password: "",
+      description: "",
+      role: "",
+    });
   };
 
   return (

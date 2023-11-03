@@ -15,6 +15,7 @@ import Messages from "./pages/messages/Messages";
 import ProtectionWrapper from "./components/common/ProtectionWrapper";
 import Meeting from "./pages/meeting/Meeting";
 import Landingpage from "./pages/landingPage/LandingPage";
+// import FormContextProvider, { FormContext } from "./pages/register/FormContext";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -38,6 +39,7 @@ const App = () => {
               </ProtectionWrapper>
             }
           />
+
           <Route path="/dashboard/messages" element={<Messages />} />
           {/* <Route path="/dashboard/form" element={<MultiStepForm />} /> */}
           <Route path="/dashboard/meetings/:meetingId" element={<Meeting />} />
