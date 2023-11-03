@@ -4,7 +4,7 @@ const DEFAULT_ERROR_MESSAGE = "Network Error or Something went wrong.";
 
 export const baseURL = import.meta.env.DEV
   ? "http://127.0.0.1:8899/api/v1"
-  : "https://real-tunic-dove.cyclic.cloud/api/v1";
+  : "https://test-zelv.onrender.com/api/v1";
 
 const customRequest = axios.create({ baseURL });
 customRequest.interceptors.request.use((config) => {

@@ -14,6 +14,7 @@ const ContactCard = ({ data, setSelectedChat, selectedChat, lastMessage }) => {
       p={2}
       bgcolor={active === selectedChat.email ? "dodgerblue" : "white"}
       mb={1}
+      width={290}
       component="div"
       onClick={() => {
         setActive(email);
@@ -36,8 +37,8 @@ const ContactCard = ({ data, setSelectedChat, selectedChat, lastMessage }) => {
           </Typography>
           <Typography
             color={active === selectedChat.user ? "white" : "gray"}
-            noWrap
             variant="body2"
+            noWrap
           >
             {lastMessage}
           </Typography>
@@ -53,4 +54,5 @@ ContactCard.propTypes = {
   data: PropTypes.any,
   setSelectedChat: PropTypes.any,
   selectedChat: PropTypes.any,
+  lastMessage: PropTypes.any,
 };

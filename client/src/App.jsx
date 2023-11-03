@@ -11,10 +11,9 @@ import ResetPassword from "./pages/resetPassword/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Home from "./pages/home/Home";
 import Messages from "./pages/messages/Messages";
+import MultiStepForm from "./components/common/MultiStepForm";
 import ProtectionWrapper from "./components/common/ProtectionWrapper";
-import FormContextProvider from "./pages/register/FormContext";
 import Meeting from "./pages/meeting/Meeting";
-import Landingpage from "./pages/landingPage/LandingPage";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -27,20 +26,22 @@ const App = () => {
         <Notification />
         <Routes>
           <Route path="/">
-            <Route index element={<Landingpage />} />
+            <Route index element={<Home />} />
           </Route>
 
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/messages" element={<Messages />} />
-          <Route path="/dashboard/meetings/:meetingId" element={<Meeting />} />
           <Route
-            path="/register"
+            path="/dashboard"
             element={
-              <FormContextProvider>
-                <RegisterPage />
-              </FormContextProvider>
+              <ProtectionWrapper>
+                <Dashboard />
+              </ProtectionWrapper>
             }
           />
+          <Route path="/dashboard/messages" element={<Messages />} />
+          <Route path="/dashboard/form" element={<MultiStepForm />} />
+          <Route path="/dashboard/meetings/:meetingId" element={<Meeting />} />
+
+          <Route path="/register" element={<RegisterPage />} />
           <Route
             path="/login"
             element={

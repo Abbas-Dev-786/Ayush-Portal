@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { joinMeeting } from "../../api";
+import logo from "./../../../public/images/logo.svg";
 
 const Meeting = () => {
   const { user } = useSelector((state) => state.user);
@@ -15,7 +16,7 @@ const Meeting = () => {
     // generate Kit Token
 
     if (data?.token) {
-      const appID = 1437058845;
+      const appID = 844198433;
       const kitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
         appID,
         data.token,
@@ -36,7 +37,7 @@ const Meeting = () => {
         //   title: "Title",
         // },
         branding: {
-          logoURL: "./images/logo.svg", // Th branding LOGO URL.
+          logoURL: logo, // Th branding LOGO URL.
         },
 
         scenario: {

@@ -11,7 +11,6 @@ const { Server } = require("socket.io");
 const http = require("http");
 const app = require("./app");
 const Message = require("./models/messageModel");
-const fs = require("fs");
 
 const server = http.createServer(app);
 
@@ -37,6 +36,8 @@ io.on("connection", (socket) => {
 
   socket.on("send-msg", async ({ from, to, message }) => {
     await Message.create({ from, to, message });
+
+    socket.emit("res-msg", [from, to]);
   });
 
   socket.on("disconnect", () => {

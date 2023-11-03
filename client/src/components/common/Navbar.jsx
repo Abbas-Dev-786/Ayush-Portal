@@ -1,17 +1,23 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
+import { NavLink } from "react-router-dom";
+import {
+  Divider,
+  Stack,
+  Typography,
+  AppBar,
+  Box,
+  Toolbar,
+  Container,
+} from "@mui/material";
 import {
   MessageOutlined,
   NewspaperOutlined,
   NotificationsOutlined,
   RocketLaunchOutlined,
 } from "@mui/icons-material";
-import { Divider, Stack, Typography } from "@mui/material";
+
 import UserMenu from "./UserMenu";
 import Searchbar from "./Searchbar";
-import { NavLink } from "react-router-dom";
+import logo from "./../../../public/images/logo.svg";
 
 const navLinks = [
   { text: "News", link: "", icon: <NewspaperOutlined /> },
@@ -46,7 +52,7 @@ function Navbar() {
             disableGutters
           >
             <NavLink to="/dashboard">
-              <Box component="img" height={50} src="/images/logo.svg" />
+              <Box component="img" height={50} src={logo} />
             </NavLink>
 
             <Searchbar />

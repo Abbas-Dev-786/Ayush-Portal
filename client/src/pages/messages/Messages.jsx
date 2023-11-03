@@ -5,19 +5,30 @@ import ContactCard from "../../components/message/ContactCard";
 import Navbar from "../../components/common/Navbar";
 import BottomNav from "../../components/common/BottomNav";
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { getAllChats } from "../../api";
 import ChatArea from "../../components/message/ChatArea";
 import { socket } from "../../socket";
 import UserSearch from "../../components/message/UserSearch";
+import { useSelector } from "react-redux";
 
 const Messages = () => {
+  const queryClient = useQueryClient();
+
+  const { user } = useSelector((state) => state.user);
   const [selectedChat, setSelectedChat] = useState({});
   const { data } = useQuery(["chats"], getAllChats);
 
   useEffect(() => {
     socket.connect();
-  }, []);
+
+    socket.on("res-msg", (data) => {
+      if (data.includes(user._id)) {
+        queryClient.invalidateQueries({ queryKey: ["messages"] });
+        queryClient.invalidateQueries({ queryKey: ["chats"] });
+      }
+    });
+  }, [queryClient, user._id]);
 
   return (
     <Container maxWidth="xl">
